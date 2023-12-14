@@ -1,0 +1,723 @@
+@startuml
+abstract class entity.Prop {
++ int spriteCounter
++ int spriteNum
+- double x
+- Image propImage
+- ShadowEffect shadowEffect
+- Object propClass
++ ShadowEffect getShadowEffect()
++ void setShadowEffect(ShadowEffect)
++ Object getPropClass()
++ void setPropClass(Object)
++ Image getPropImage()
++ void setPropImage(Image)
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
+}
+interface effect.EffectFunctionable {
+~ void draw(GraphicsContext)
+~ void update()
+}
+class Item.BaseItem {
++ <<Create>> BaseItem(int)
++ <<Create>> BaseItem(Monster,Player)
++ void setDefaultValues(int)
++ void setDefaultValues(Monster,Player)
++ void updateAll(Player)
++ void drawAll(GraphicsContext)
+}
+class entity.Snowman {
++ <<Create>> Snowman(int,int)
++ void update()
++ void draw(GraphicsContext)
+}
+class effect.ShadowEffect {
++ <<Create>> ShadowEffect(Player)
++ <<Create>> ShadowEffect(Monster)
++ void loadPicture()
++ void update()
++ void draw(GraphicsContext)
++ void delete()
+}
+class effect.SuperSaiyan {
++ <<Create>> SuperSaiyan(Player)
++ void loadPicture()
++ void update()
++ void draw(GraphicsContext)
++ void delete()
+}
+class entity.BaseProp {
++ <<Create>> BaseProp(int,int)
++ void setDefaultValues(int,int)
++ void updateAll()
++ void drawAll(GraphicsContext)
+}
+class font.Number {
++ Image number0
++ Image number1
++ Image number2
++ Image number3
++ Image number4
++ Image number5
++ Image number6
++ Image number7
++ Image number8
++ Image number9
++ ArrayList<Image> numbers
++ <<Create>> Number()
++ Image getNumberImage(int)
+}
+interface entity.PropFunctionable {
+~ void draw(GraphicsContext)
+~ void update()
+}
+class entity.Monster {
++ Player player
+- double hp
+- double maxHP
+- Image HPB
+- double damage
+- boolean isAngry
+- boolean canWalk
++ <<Create>> Monster()
++ <<Create>> Monster(Player)
++ void setDefaultValues(Player)
++ void loadpic()
++ void update(Player)
++ void walk()
++ void getAttacked()
++ void getCloseAttack()
++ void draw(GraphicsContext)
++ void setImageForDrawLeft()
++ void setImageForDrawRight()
++ void setImageForDrawDown()
++ void setImageForDrawUp()
++ void delete()
++ void updateAll(ArrayList<Monster>)
++ void drawAll(ArrayList<Monster>,GraphicsContext)
++ void setXY(double,double)
++ void monsterWalkUpdate()
++ void drawHp(GraphicsContext)
++ void setPlayer(Player)
++ Image getHPB()
++ void setHPB(Image)
++ double getMaxHP()
++ void setMaxHP(double)
++ boolean isAngry()
++ void setAngry(boolean)
++ double getHp()
++ void setHp(double)
++ double getDamage()
++ void setDamage(double)
++ boolean isCanWalk()
++ void setCanWalk(boolean)
+}
+class Item.DragonBallBeans {
++ <<Create>> DragonBallBeans(int)
++ <<Create>> DragonBallBeans(Monster,Player)
++ void use(Player)
+}
+class effect.SpawnEffect {
++ Player player
++ Monster monster
+~ int count
++ <<Create>> SpawnEffect(Player)
++ <<Create>> SpawnEffect(Monster)
++ <<Create>> SpawnEffect(Player,Monster)
++ void loadPicture()
++ void update()
++ void draw(GraphicsContext)
++ void delete()
+}
+abstract class entity.Entity {
++ int spriteCounter
++ int spriteNum
+- double x
+- double speed
+- Image up1
+- Image currentImage
+- String direction
+- boolean isAttack
+- ShadowEffect shadowEffect
+- Object entityClass
+- boolean canWalkUP
+- boolean canWalkLeft
+- boolean canWalkDown
+- boolean canWalkRight
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ double getSpeed()
++ void setSpeed(double)
++ int getSpriteCounter()
++ void setSpriteCounter(int)
++ int getSpriteNum()
++ void setSpriteNum(int)
++ String getDirection()
++ void setDirection(String)
++ Image getUp1()
++ void setUp1(Image)
++ Image getUp2()
++ void setUp2(Image)
++ Image getDown1()
++ void setDown1(Image)
++ Image getDown2()
++ void setDown2(Image)
++ Image getLeft1()
++ void setLeft1(Image)
++ Image getLeft2()
++ void setLeft2(Image)
++ Image getRight1()
++ void setRight1(Image)
++ Image getRight2()
++ void setRight2(Image)
++ Image getCurrentImage()
++ void setCurrentImage(Image)
++ Image getDown3()
++ void setDown3(Image)
++ Image getLeft3()
++ void setLeft3(Image)
++ Image getRight3()
++ void setRight3(Image)
++ Image getUp3()
++ void setUp3(Image)
++ boolean isAttack()
++ void setAttack(boolean)
++ ShadowEffect getShadowEffect()
++ void setShadowEffect(ShadowEffect)
++ Object getEntityClass()
++ void setEntityClass(Object)
++ void setCanWalkUp(boolean)
++ boolean isCanWalkDown()
++ void setCanWalkDown(boolean)
++ boolean isCanWalkLeft()
++ void setCanWalkLeft(boolean)
++ boolean isCanWalkRight()
++ void setCanWalkRight(boolean)
++ boolean isCanWalkUP()
+}
+class profile.ProfileBox {
+- Player player
+- Image profileImage
+- Image profileBoxImage
+- int spriteCounter
+- int spriteNum
+- String profileImageURL
+- String profileBoxURL
++ <<Create>> ProfileBox()
++ void setDefaultValues()
++ void draw(GraphicsContext)
++ void update(Player)
++ Player getPlayer()
++ void setPlayer(Player)
++ int getSpriteCounter()
++ void setSpriteCounter(int)
++ int getSpriteNum()
++ void setSpriteNum(int)
++ String getProfileImageURL()
++ void setProfileImageURL(String)
++ Image getProfileImage()
++ void setProfileImage(Image)
++ Image getProfileBoxImage()
++ void setProfileBoxImage(Image)
++ String getProfileBoxURL()
++ void setProfileBoxURL(String)
+}
+class main.MusicController {
+- {static} String MUSIC_FILE_PATH
+- {static} MediaPlayer mediaPlayer
++ {static} void playMusic()
++ {static} HBox createMusicControllerPopup()
+- {static} Slider createVolumeSlider()
+- {static} Button createSoundButton()
+- {static} void configurePopupSetting(HBox)
+- {static} void toggleSoundButtonImage(Button,ImageView,ImageView)
+- {static} void setVolume(double)
+}
+class entity.ChristmasTree {
++ <<Create>> ChristmasTree(int,int)
++ void update()
++ void draw(GraphicsContext)
+}
+class main.KeyHandler {
+- {static} ArrayList<KeyCode> keyPressed
++ {static} boolean getKeyPressed(KeyCode)
++ {static} void setKeyPressed(KeyCode,boolean)
+}
+class Item.BluePotion {
++ <<Create>> BluePotion(int)
++ <<Create>> BluePotion(Monster,Player)
++ void use(Player)
+}
+class entity.Boss {
+- boolean isAngry
++ <<Create>> Boss()
++ <<Create>> Boss(Player)
++ void setDefaultValues(Player)
++ void loadpic()
++ void update(Player)
++ void walk()
++ void getAttacked()
++ void getCloseAttacked()
++ void draw(GraphicsContext)
++ void delete()
++ void setXY(double,double)
++ boolean isAngry()
++ void setAngry(boolean)
+}
+interface Item.ItemFunctionable {
+~ void use(Player)
+~ void update(Player)
+~ void draw(GraphicsContext)
+~ void addItem(Player)
+~ void deleteItem(Player)
+~ void autoDelete()
+}
+class entity.Player {
+- BasicAttackObject attackObj
+- InventoryBar inventoryBar
+- double playerX
+- double playerY
+- int level
+- double hp
+- double maxHP
+- double mana
+- double maxMana
+- double exp
+- double maxExp
+- double sleepiness
+- double maxSleepiness
+- int sleepCounter
+- Image HPB
+- Image HPB2
+- Image manaB
+- Image manaB2
+- Image expB
+- Image sleepB
+- boolean isSpawned
+- int point
+- int monsterDied
+- int waitForStart
+- ProfileBox profileBox
+- SuperSaiyan superSaiyan
+- boolean isSuperSaiyan
+- boolean pressedV
++ <<Create>> Player()
++ void setDefaultValues()
++ void spawn()
++ void loadpic()
++ void update()
++ void draw(GraphicsContext)
++ void updatePlayerWalk()
++ void drawHp(GraphicsContext)
++ void drawMana(GraphicsContext)
++ void drawExp(GraphicsContext)
++ void drawSleepiness(GraphicsContext)
++ void saiyanUpdate()
++ void setAutoValues()
++ void setImageWithCounter()
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ double getHp()
++ void setHp(double)
++ double getMaxHP()
++ void setMaxHP(double)
++ Image getHPB()
++ void setHPB(Image)
++ double getExp()
++ void setExp(double)
++ double getMana()
++ void setMana(double)
++ double getMaxExp()
++ void setMaxExp(double)
++ double getMaxMana()
++ void setMaxMana(double)
++ Image getExpB()
++ void setExpB(Image)
++ Image getManaB()
++ void setManaB(Image)
++ double getMaxSleepiness()
++ void setMaxSleepiness(double)
++ double getSleepiness()
++ void setSleepiness(double)
++ int getSleepCounter()
++ void setSleepCounter(int)
++ BasicAttackObject getAttackObj()
++ void setAttackObj(BasicAttackObject)
++ void updateAttackObj()
++ void attack()
++ InventoryBar getInventoryBar()
++ void setInventoryBar(InventoryBar)
++ int getMonsterDied()
++ void setMonsterDied(int)
++ int getPoint()
++ void setPoint(int)
++ boolean isSpawned()
++ void setSpawned(boolean)
++ int getWaitForStart()
++ void setWaitForStart(int)
++ ProfileBox getProfileBox()
++ void setProfileBox(ProfileBox)
++ Image getHPB2()
++ void setHPB2(Image)
++ Image getManaB2()
++ void setManaB2(Image)
++ Image getSleepB()
++ void setSleepB(Image)
++ SuperSaiyan getSuperSeiya()
++ void setSuperSeiya(boolean)
++ boolean isSuperSaiyan()
++ void setSuperSaiyan(SuperSaiyan)
++ boolean isPressedV()
++ void setPressedV(boolean)
++ int getLevel()
++ void setLevel(int)
+}
+abstract class Item.Item {
++ int spriteCounter
++ int spriteNum
+- Player player
+- Image itemImage
+- String itemImageURL
+- double x
+- double y
+- int slot
+- int amount
+- boolean isAdded
+- boolean isUsed
+- boolean isPicked
+- int deleteCounter
+- boolean isWink
+- int prepareDelete
+- Object itemClass
+- int dropDirection
+- int dropRange
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ Image getItemImage()
++ void setItemImage(Image)
++ boolean isAdded()
++ void setAdded(boolean)
++ boolean isUsed()
++ void setUsed(boolean)
++ boolean isPicked()
++ void setPicked(boolean)
++ void setSpriteCounter(int)
++ void setSpriteNum(int)
++ String getItemImageURL()
++ void setItemImageURL(String)
++ Player getPlayer()
++ void setPlayer(Player)
++ void setSlot(int)
++ int getPrepareDelete()
++ void setPrepareDelete(int)
++ int getDeleteCounter()
++ void setDeleteCounter(int)
++ boolean isWink()
++ void setWink(boolean)
++ Object getItemClass()
++ void setItemClass(Object)
++ int getDropDirection()
++ void setDropDirection(int)
++ int getAmount()
++ void setAmount(int)
++ int getDropRange()
++ void setDropRange(int)
+}
+class effect.DiedEffect {
++ Monster monster
+~ int count
++ <<Create>> DiedEffect(Monster,Player)
++ void loadPicture()
++ void update()
++ void draw(GraphicsContext)
++ void delete()
+}
+class entity.Gift2 {
++ <<Create>> Gift2(int,int)
++ void update()
++ void draw(GraphicsContext)
+}
+class effect.BaseEffect {
++ <<Create>> BaseEffect(Player)
++ <<Create>> BaseEffect(Monster)
++ <<Create>> BaseEffect(Monster,Player)
++ void setDefaultValues(Monster)
++ void setDefaultValues(Player)
++ void setDefaultValues(Monster,Player)
++ void loadPicture()
++ void updateAll(Player)
++ void drawAll(GraphicsContext)
+}
+class Inventory.InventoryBar {
++ {static} int selectedSlot
+- ArrayList<BaseItem> items
+- Player player
+- Image inventoryB
+- Image selectedSlotImage
+- boolean pressed
+- String imageURL
+- String selectedImageURL
++ <<Create>> InventoryBar()
++ void setDefaultValues()
++ void draw(GraphicsContext)
++ void update(Player)
++ void updateInventory()
++ void drawItemInInventory(GraphicsContext)
++ void setBarrier(Player)
++ ArrayList<BaseItem> getItems()
++ void setItems(ArrayList<BaseItem>)
++ int getSelectedSlot()
++ void setSelectedSlot(int)
++ void setSelectedSlotImage(Image)
++ void setInventoryB(Image)
++ void setPressed(boolean)
++ Player getPlayer()
++ void setPlayer(Player)
++ String getImageURL()
++ void setImageURL(String)
++ String getSelectedImageURL()
++ void setSelectedImageURL(String)
+}
+class main.Main {
++ {static} void main(String[])
++ void start(Stage)
+}
+class entity.Gift {
++ <<Create>> Gift(int,int)
++ void update()
++ void draw(GraphicsContext)
+}
+interface entity.EntityFunctionable {
+~ void draw(GraphicsContext)
+}
+class scenes.GameScene {
++ <<Create>> GameScene(Stage)
+- VBox createRetryPane(Stage)
+- Button createRetryButton(Stage)
+}
+class scenes.StartScene {
++ <<Create>> StartScene(Stage)
+- {static} VBox createStartScene(Stage)
+- {static} Button createButton(String,String)
+- {static} Text rule(String)
+- {static} VBox createRules()
+}
+class object.BasicAttackObject {
++ <<Create>> BasicAttackObject(Player)
++ void setDefaultValues(Player)
++ void loadpic()
++ void update()
++ void draw(GraphicsContext)
+}
+interface object.AttackObjectFunctionable {
+~ void draw(GraphicsContext)
+}
+class Item.Potion {
++ <<Create>> Potion(int)
++ <<Create>> Potion(Monster,Player)
++ void use(Player)
++ void update(Player)
++ void draw(GraphicsContext)
++ void addItem(Player)
++ void deleteItem(Player)
++ void autoDelete()
+}
+abstract class effect.Effect {
++ int spriteCounter
++ int spriteNum
++ Monster monster
++ Player player
+- double x
+- String owner
+- Image up1
+- Image effect1
+- Image currentImage
+- String phase
+- Object effectClass
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ int getSpriteCounter()
++ void setSpriteCounter(int)
++ int getSpriteNum()
++ void setSpriteNum(int)
++ String getPhase()
++ void setPhase(String)
++ Image getUp1()
++ void setUp1(Image)
++ Image getUp2()
++ void setUp2(Image)
++ Image getCurrentImage()
++ void setCurrentImage(Image)
++ Player getPlayer()
++ void setPlayer(Player)
++ Monster getMonster()
++ void setMonster(Monster)
++ void setEffectClass(Object)
++ Image getEffect1()
++ void setEffect1(Image)
++ Image getEffect2()
++ void setEffect2(Image)
++ Image getEffect3()
++ void setEffect3(Image)
++ Image getEffect4()
++ void setEffect4(Image)
++ String getOwner()
++ void setOwner(String)
+}
+class main.GamePanel {
++ {static} Number number
++ {static} ArrayList<Monster> monsters
++ {static} ArrayList<BaseEffect> effects
++ {static} ArrayList<BaseItem> itemOnFloors
++ {static} ArrayList<BaseProp> props
++ {static} boolean isGameOver
++ Player player
++ Monster monster
++ BaseEffect effect
++ BaseItem baseItemOnFloor
++ BaseProp baseProp
++ Background background
++ GraphicsContext gc
++ <<Create>> GamePanel(double,double)
++ void addKeyListener()
++ void update()
++ void paintComponent()
++ void setAllProp()
++ void setAllDefaultValues()
+}
+class scenes.SelectedScene {
++ {static} String playerName
++ {static} String selectedCharacter
++ <<Create>> SelectedScene(Stage)
+- {static} VBox createSelectedScene(Stage)
+- {static} TextField createPlayerNameTextField()
+- {static} VBox createCharacterPane()
+- {static} Button createCharacterButton(String,String)
+- {static} void setCharacterSelectionActions(Button,Button)
+- {static} void updateCharacterButtonStyles(Button,Button,boolean)
+- {static} Button createPlayButton(Stage)
+- {static} void setRootStyle(VBox)
+- {static} void setTextFieldStyle(TextField)
+- {static} void setPlayButtonStyle(Button)
++ {static} String getPlayerName()
++ {static} String getSelectedCharacter()
+}
+class Item.RedPotion {
++ <<Create>> RedPotion(int)
++ <<Create>> RedPotion(Monster,Player)
++ void use(Player)
+}
+class Item.CoffeePotion {
++ <<Create>> CoffeePotion(int)
++ <<Create>> CoffeePotion(Monster,Player)
++ void use(Player)
+}
+class background.Background {
+- Image background
++ void draw(GraphicsContext)
+}
+abstract class object.AttackObject {
++ int spriteCounter
++ int spriteNum
+- double x
+- double sizeX
+- double speed
+- double damage
+- int range
+- int baseRange
+- Player player
+- boolean visible
+- boolean destroyed
+- Image up1
+- String direction
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ void setSpeed(int)
++ int getSpriteCounter()
++ void setSpriteCounter(int)
++ int getSpriteNum()
++ void setSpriteNum(int)
++ String getDirection()
++ void setDirection(String)
++ int getRange()
++ void setRange(int)
++ void setBaseRange(int)
++ Player getPlayer()
++ void setPlayer(Player)
++ double getDamage()
++ void setDamage(double)
++ void setSizeX(double)
++ double getSizeY()
++ void setSizeY(double)
++ Image getRight2()
++ void setRight2(Image)
++ Image getRight1()
++ void setRight1(Image)
++ Image getLeft2()
++ void setLeft2(Image)
++ Image getLeft1()
++ void setLeft1(Image)
++ Image getDown2()
++ void setDown2(Image)
++ Image getDown1()
++ void setDown1(Image)
++ Image getUp2()
++ void setUp2(Image)
++ Image getUp1()
++ void setUp1(Image)
++ boolean isVisible()
++ void setVisible(boolean)
+}
+
+
+Item.Item <|-- Item.BaseItem
+entity.PropFunctionable <|.. entity.Snowman
+entity.BaseProp <|-- entity.Snowman
+effect.EffectFunctionable <|.. effect.ShadowEffect
+effect.BaseEffect <|-- effect.ShadowEffect
+effect.EffectFunctionable <|.. effect.SuperSaiyan
+effect.BaseEffect <|-- effect.SuperSaiyan
+entity.Prop <|-- entity.BaseProp
+entity.EntityFunctionable <|.. entity.Monster
+entity.Entity <|-- entity.Monster
+Item.RedPotion <|-- Item.DragonBallBeans
+effect.EffectFunctionable <|.. effect.SpawnEffect
+effect.BaseEffect <|-- effect.SpawnEffect
+entity.PropFunctionable <|.. entity.ChristmasTree
+entity.BaseProp <|-- entity.ChristmasTree
+Item.Potion <|-- Item.BluePotion
+entity.Monster <|-- entity.Boss
+entity.EntityFunctionable <|.. entity.Player
+entity.Entity <|-- entity.Player
+effect.EffectFunctionable <|.. effect.DiedEffect
+effect.BaseEffect <|-- effect.DiedEffect
+entity.PropFunctionable <|.. entity.Gift2
+entity.BaseProp <|-- entity.Gift2
+effect.Effect <|-- effect.BaseEffect
+javafx.application.Application <|-- main.Main
+entity.PropFunctionable <|.. entity.Gift
+entity.BaseProp <|-- entity.Gift
+javafx.scene.Scene <|-- scenes.GameScene
+javafx.scene.Scene <|-- scenes.StartScene
+object.AttackObjectFunctionable <|.. object.BasicAttackObject
+object.AttackObject <|-- object.BasicAttackObject
+Item.ItemFunctionable <|.. Item.Potion
+Item.BaseItem <|-- Item.Potion
+javafx.scene.canvas.Canvas <|-- main.GamePanel
+javafx.scene.Scene <|-- scenes.SelectedScene
+Item.Potion <|-- Item.RedPotion
+Item.Potion <|-- Item.CoffeePotion
+@enduml
